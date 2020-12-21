@@ -1,0 +1,21 @@
+
+body{font-family: 'Roboto Slab', serif;
+    margin: auto;
+}
+.navigation{  background-color: #9356DC;}
+.violet{background-color:rgb(247, 241, 241) ;
+    border: solid 1px #9356DC;
+}
+h1{
+    border: solid 1px #9356DC;
+    color:#CA6F1E;
+}
+.furniture {border-radius: 20px; background-color:#CA6F1E; };
+
+
+
+
+
+
+
+
