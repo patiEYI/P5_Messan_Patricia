@@ -1,6 +1,6 @@
-
-body{font-family: 'Roboto Slab', serif;
-    margin: auto;
+/* p,li,input,h2,h1,a,span{ font-size: 1.2rem;} */
+body{ margin: auto;
+   
 }
 .navigation{  background-color: #9356DC;}
 .violet{background-color:rgb(247, 241, 241) ;
@@ -10,8 +10,11 @@ h1{
     border: solid 1px #9356DC;
     color:#CA6F1E;
 }
-.furniture {border-radius: 20px; background-color:#CA6F1E; };
+.furniture {border-radius: 20px; background-color:#CA6F1E; }
+main #basket{border-radius: 30px; }
 
+#clear {display: none;}
+#shop:hover{background-color:#F3F2F1;}
 
 
 

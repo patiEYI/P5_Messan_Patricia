@@ -8,167 +8,165 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    </head>
-    <body class="bg-ligth">
+   </head>
+   <body class="bg-ligth">
          <!--nav-->
-         <div class="navigation">
-            <div class="container-fluid">
-               <div class="row">
-                  <nav class="col navbar navbar-expand-lg navbar-dark">
-                    <a class="navbar-brand" href="index.html">ORINOCO
+      <div class="navigation">
+         <div class="container-fluid">
+            <div class="row">
+               <nav class="col navbar navbar-expand-lg navbar-dark">
+                  <a class="navbar-brand" href="index.html">ORINOCO
                      <img src="img-nav.png" alt="logo orinoco">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                  </a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
                         <span class="navbar-toggler-icon"></span>
-                     </button>
-                     <div id="navbarContent" class="collapse navbar-collapse">   
-                    <ul class="navbar-nav">
-                       <li class="nav-item active">
-                          <a class="nav-link" href="index.html">Produits</a>
-                       </li>
-                       <li class="nav-item">
+                  </button>
+                  <div id="navbarContent" class="collapse navbar-collapse">   
+                     <ul class="navbar-nav">
+                        <li class="nav-item active">
+                           <a class="nav-link" href="index.html">Produits</a>
+                        </li>
+                        <li class="nav-item">
                           <a class="nav-link" href="#">Commande</a>
-                       </li>
-                       <li class="nav-item">
-                        <a class="nav-link" href="panier.html">Panier</a>
-                     </li>
-                    </ul>
-                </div>
-                  </nav>
-               </div>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="panier.html">Panier</a>
+                        </li>
+                     </ul>
+                  </div>
+               </nav>
             </div>
          </div>
-         <!--/////// main////////////// -->
-         <main id="main" class="offset-lg-2">
-            <h1 class="text-center shadow-lg p-4 font-weight-bold">Votre panier </h1>
+      </div>
+      <!--/////// main////////////// -->
+      <main id="main" class="offset-lg-2">
+         <h1 class="text-center shadow-lg p-4 font-weight-bold">Votre panier </h1>
             <div class="container  mx-auto ">
                <div class="row">
                 <!---->
-                  <a class="list-group-item btn shadow-lg col-sm-12 text-center my-4" href="index.html">Continuer mes achats</a>
+                  <a class="list-group-item btn shadow-lg col-sm-10 col text-center my-4  border-info" id="shop"  href="index.html"><h3>Continuer mes achats</h3> </a>
                </div>
                <div class="container list-unstyled">
-                  <div class="row">  
-                    <div class="col" id="basket"> </div>
-                   </div>
+                  <div class="row bg-light mt-5" id="basket" >  </div> 
+                    
+                  
                </div>
             </div>
             <div class="container">
                <div class="row">
-                  <p class="my-3 offset-lg-1"><span id="subtotal"> 0</span>€</p>
-                  <a id="delete-command" href="#" class="btn btn-primary col-lg-2 p-1 my-5">supprimer article</a>
-                  <button id="validate-command" class="btn btn-primary col-lg-2 p-1 my-5 ml-5">régler mes achats </button>
-                 
+                  <p class="my-5 col offset-lg-2 h3"><span id="subtotal">Votre panier est vide.Besoin d'inspiration? Cliquez sur le boutton continuer mes achats pour retrouver toute notre collection! </span></p> 
                </div>
+               <button id="clear" class="btn btn-primary   p-2 my-5">vider le panier </button> 
             </div>
-         </main>
-         <section>
-           <!---->
-           <!---->
-            <form method="GET" action="confirmation.html" onsubmit="return checkValidity()" class="offset-lg-3 needs-validation" novalidate>
-               <p class="comments"> 
-                  <legend>Ces champs sont requis
-                 <span title="Ce champ est obligatoire">*</span></legend></p>
-               <div class="row mb-3">
-                 <div class="form-group col-lg-5 col-sm-12 col-md-4">
-                   <label for="nom">Entrez votre nom</label>
-                   <input type="text" minlength="1" class="form-control shadow-sm" id="nom" placeholder="STANFORD" required>
-                    <p id="missNom"></p>
-                 </div>
-                 <div class="form-group col-lg-5 col-md-4 col-sm-3">
-                  <label for="prénom">Entrez votre prénom</label>
-                  <input type="text" class="form-control shadow-sm" id="prenom" placeholder="Abalo " required>
-                  <p id="missPrenom"></p>
-                </div>
+      </main>
+      <section>
+      
+         <form method="POST" action="confirmation.html" onsubmit="validation()" class=" my-5 mx-auto needs-validation" novalidate>
+            
+            <h4 class="offset-lg-4 offset-md-1 text-center">Ces champs sont requis pour valider votre commande
+            <span title="Ce champ est obligatoire">*</span></h4>
+               <div class="row mb-lg-3 offset-lg-3 offset-md-1">
+                  <div class="form-group col-lg-5 mx-auto col-md-8 col-10">
+                     <label for="lastName">Entrez votre nom</label>
+                     <input type="text" minlength="1" class="form-control nom shadow-sm" id="lastName" placeholder="STANFORD" required>
+                     <p id="misslastName"></p>
+                  </div>
+                  <div class="form-group col-lg-5 col-md-8 mx-auto col-10">
+                     <label for="firstName">Entrez votre prénom</label>
+                     <input type="text" class="form-control class shadow-sm" id="firstName" placeholder="Abalo " required>
+                     <p id="missfirstName"></p>
+                  </div>
                </div>
-                 
-               <div class="row mb-3">
-                 <div class="form-group col-lg-5  col-md-4 col-sm-12">
-                   <label for="email">Entrez votre mail</label>
-                   <input type="email" class="form-control shadow-sm" id="email" placeholder="stanford.abalo@edhec.com"required>
-                   <p id="missEmail"></p>
-                 </div>
-                 <div class="form-group col-lg-5  col-md-4 col-sm-12">
-                  <label for="inputAdresse">Numéro et nom de la rue</label>
-                  <input type="text" class="form-control " id="inputAdresse" placeholder="5 rue saint nicolas" required>
-                  <p id="missInputAdresse"></p>
-                 </div>
+                  
+               <div class="row mb-lg-3 offset-lg-3 offset-md-1">
+                  <div class="form-group col-lg-5 mx-auto col-md-8 col-10">
+                     <label for="email">Entrez votre mail</label>
+                     <input type="email" class="form-control shadow-sm" id="email" placeholder="stanford.abalo@edhec.com" required>
+                     <p id="missEmail"></p>
+                  </div>
+                  <div class="form-group col-lg-5 mx-auto col-md-8 col-10">
+                     <label for="inputAdresse">Numéro et nom de la rue</label>
+                     <input type="text" class="form-control " id="inputAdresse" placeholder="5 rue saint nicolas" required>
+                     <p id="missInputAdresse"></p>
+                  </div>
                </div>
 
-               <div class="row mb-3">  
-                  <div class="form-group col-lg-5  col-md-4 col-sm-12">
-                    <label for="inputCity">Entrez le nom de votre ville</label>
-                    <input class="form-control shadow-sm" id="inputCity" placeholder="Gonesse " required></textarea>
-                    <p id="missInputCity"></p>
+               <div class="row mb-lg-3 offset-lg-3 offset-md-1">  
+                  <div class="form-group col-lg-5 mx-auto col-md-8 col-10">
+                     <label for="inputCity">Entrez le nom de votre ville</label>
+                     <input class="form-control shadow-sm" id="inputCity" placeholder="Gonesse" required>
+                     <p id="missInputCity"></p>
                   </div>
-                  <div class="form-group col-lg-5  col-md-4 col-sm-12">
-                   <label for="cp">Entrez votre code postale</label>
-                   <input type="text" max="5" class="form-control " id="cp" placeholder="95500" required>
-                   <p id="missCp"></p>
+                  <div class="form-group col-lg-5 mx-auto col-md-8 col-10">
+                     <label for="cp">Entrez votre code postale</label>
+                     <input type="text" maxlength="5" class="form-control " id="cp" placeholder="95500" required>
+                     <p id="missCp"></p>
                   </div>
-                </div>
-                
-               <div class="row mb-3">  
-                 <div class="form-group col-lg-5  col-md-4 col-sm-12">
-                   <label for="inputAdress">Adresse suplémentaire (facultatif)</label>
-                   <input class="form-control shadow-sm" id="inputadress" placeholder="lieu-dit...."></textarea>
-                   
-                 </div>
-                 <div class="form-group col-lg-5  col-md-4 col-sm-12">
-                  <label for="inputCity">Votre numéro de téléphone</label>
-                  <input type="number" class="form-control " id="tel" placeholder="07 33 44 55 77" required>
-                  <p id="missTel"></p>
-                 </div>
+               </div>
+                  
+               <div class="row mb-lg-3 offset-lg-3 offset-md-1">  
+                  <div class="form-group col-lg-5 mx-auto col-md-8 col-10">
+                     <label for="inputAdress">Adresse suplémentaire (facultatif)</label>
+                     <input type="text" class="form-control shadow-sm" maxlength="40" id="inputAdress" placeholder="lieu-dit...."> 
+                  </div>
+                  <div class="form-group col-lg-5 mx-auto col-md-8 col-10">
+                     <label for="tel">Votre numéro de téléphone</label>
+                     <input type="tel" maxlength="10" class="form-control " id="tel" placeholder="0733445577" required>
+                     <p id="missTel"></p>
+                  </div>
                </div>
 
-               <div class="form-group row">
+               <div class="form-group row offset-lg-3 offset-md-1">
                   <div class="form-check">
-                    <input class="form-check-input col-lg-2 " type="checkbox" value="" id="cgu" required>
-                    <label class="form-check-label ml-5" for="cgu">J'accepte les conditions générales d'utilisation et de la vente</label>
-                    <div class="invalid-feedback mb-5">Vous devez accepter les CGU pour continuer</div>
+                     <input class="form-check-input col-2 " type="checkbox" value="" id="cgu" required>
+                     <label class="form-check-label offset-1 col" for="cgu">J'accepte les conditions générales d'utilisation et de la vente</label>
+                     <div class="invalid-feedback mb-5">Vous devez accepter les CGU pour continuer</div>
                   </div>
-                 </div>
-                  <a type="submit" id="submit" class="btn btn-primary mb-5 p-2 col-lg-3" onclick="">valider</a>
-             </form>
-         </section>
+               </div>
+                  <button type="submit" id="submit" class="btn btn-primary mb-5 p-2 offset-sm-1 offset-lg-3 offset-md-1  " onclick="">Régler mes achats</button>
+            
+         </form>
+     </section>
   
         
-          <!--footer-->
-          <footer class="fixed-bottom text-light bg-dark mt-5">
+      <!--footer-->
+      <footer class=" text-light bg-dark mt-5">
 
-            <div class="container-fluid bg-lg">
-               <div class="row">
+         <div class="container-fluid bg-lg">
+            <div class="row">
                <div class="col"> 
-                     <div class="row">
-                        <div class="col-sm-3">
-                           <div>
-                              <a class="text-white" href="#">Contact</a>
-                           </div>
+                  <div class="row">
+                     <div class="col-sm-3">
+                        <div>
+                           <a class="text-white" href="#">Contact</a>
                         </div>
-                        <div class="col-sm-3">
-                           <div>
-                              <a class="text-white " href="#">Services & livraison</a>
-                           </div>
+                     </div>
+                     <div class="col-sm-3">
+                        <div>
+                           <a class="text-white " href="#">Services & livraison</a>
                         </div>
-                        <div class="col-sm-3">
-                           <div>
-                              <a class="text-white " href="#">L'entreprise orinoco</a>
-                           </div>
+                     </div>
+                     <div class="col-sm-3">
+                        <div>
+                           <a class="text-white " href="#">L'entreprise orinoco</a>
                         </div>
-                        <div class="col-sm-3">
-                           <div>
-                              <a class="text-white " href="#">Mentions Légales</a>
-                           </div>
-                               </div>
+                     </div>
+                     <div class="col-sm-3">
+                        <div>
+                           <a class="text-white " href="#">Mentions Légales</a>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
-   
-         </footer>
-<!-- jQuery and JS bundle w/ Popper.js -->
+         </div>
+      </footer>
+         <!-- jQuery and JS bundle w/ Popper.js -->
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="./js/classe.js"></script>
-<script src="./js/function.js"></script>
-<script src="./js/panier.js"></script>
-    </body>
-    </html>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+      <script src="./js/classe.js"></script>
+      <script src="./js/function.js"></script>
+      <script src="./js/panier.js"></script>
+   </body>
+</html>
