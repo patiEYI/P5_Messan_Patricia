@@ -1,0 +1,39 @@
+.navigation {
+  background: radial-gradient(#9356DC, #9356DC, #9356DC, #9356DC);
+}
+
+.collection {
+  background-color: #f6f6f6;
+}
+.collection:hover {
+  background-color: #f5edff;
+}
+
+#shop:hover {
+  background-color: #f5edff;
+}
+
+.fa-check, .fa-truck, .fa-lock {
+  color: #9356DC;
+}
+
+.infos {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: gray;
+}
+
+#section {
+  background-color: #f6f6f6;
+  border: solid 1px gray;
+}
+
+.btn {
+  color: #D68910;
+  background: radial-gradient(#c97a58, #9356DC);
+}
+.btn:hover {
+  background: linear-gradient(#9356DC, #c97a58);
+}
+
+/*# sourceMappingURL=style.css.map */

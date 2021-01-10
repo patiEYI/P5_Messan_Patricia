@@ -1,42 +1,38 @@
 let idUrl = window.location.search;
-let idFurniture = idUrl.substr(4);
+let idFurniture = idUrl.substr(4);console.log(idFurniture)
 let newProduct = []
 sessionStorage.removeItem("varnish");
 sessionStorage.removeItem("quantity");
 
 //affichage produit
-function displayProductById(data) { 
+function displayProductById(furniture) { 
   let divCardImage = document.createElement("img");
-    let divCard = document.querySelector('.card');
-    divCard.style.backgroundColor = "#CA6F1E";
-    let divCardTitre = document.querySelector('.card-title');
-    let cardPrice = document.querySelector('.card-price');
-    let divCardDescription = document.querySelector('.card-text');
-    let myImg = new Image();              
-    myImg.addEventListener('load', function () { });
-  
-    divCardImage.className = "card-img-top";
-    //let divCardImage = document.querySelector(".card-img-top").src = data["imageUrl"];
-    divCard.appendChild(divCardImage).src = data["imageUrl"];
-    divCardTitre.innerHTML = data["name"];
-    cardPrice.innerHTML = "Prix : " + data["price"] / 100 + " euros";
-    divCardDescription.innerHTML = "Description :" + data["description"];
+  let divCard = document.querySelector('.card');
+  divCard.style.backgroundColor = "#c4accd";
+  let divCardTitre = document.querySelector('.card-title');
+  let cardPrice = document.querySelector('.card-price');
+  let divCardDescription = document.querySelector('.card-text');
+  let myImg = new Image();              
+  myImg.addEventListener('load', function () { });
+  divCardImage.className = "card-img-top";
+  divCard.appendChild(divCardImage).src = furniture["imageUrl"];
+  divCardTitre.innerHTML = furniture["name"];
+  cardPrice.innerHTML = "Prix : " + furniture["price"] / 100 + " euros";
+  divCardDescription.innerHTML = "Description :" + furniture["description"];
 
 }
 
-
-
 //choix du vernis//
-  function displayVarnish(data) {  
+  function displayVarnish(furniture) {  
     let divVarnish= document.querySelector('#selection'); 
-      for (d = -1; d < data["varnish"].length; d++) {
+      for (d = -1; d < furniture["varnish"].length; d++) {
         if (d < 0) { 
           let option = document.createElement("option");
           option.text = "vernis disponible";
           divVarnish.appendChild(option);
         }else{ 
           let option = document.createElement("option");
-          option.text = data["varnish"][d];
+          option.text = furniture["varnish"][d];
           option.setAttribute("value", option.text);
           divVarnish.add(option);
           divVarnish.addEventListener("click", function(event){
@@ -52,21 +48,20 @@ function displayProductById(data) {
   }
  
  //ajouter produit au panier
-  function addToBasket(data)  { 
+  function addToBasket(furniture)  { 
     let buttonBasket = document.querySelector(".add-to-cart");
     buttonBasket.addEventListener("click", function(event){
       if (localStorage.getItem("varnish")){ 
         event.preventDefault();
         let product = (JSON.stringify({ 
-        id: data["_id"],
-        name: data["name"],
-        price: data["price"] / 100,
-        imageUrl: data["imageUrl"],
+        id: furniture["_id"],
+        name: furniture["name"],
+        price: furniture["price"] / 100,
+        imageUrl: furniture["imageUrl"],
         quantity:localStorage.getItem("quantity"),
         varnish:localStorage.getItem("varnish"),
         }));
         localStorage.setItem("newProduct",product);
-        //sessionStorage.removeItem("quantity");
         window.location = "panier.html";
         alert("votre produit à été bien ajouter au panier");
       }else {
@@ -79,37 +74,44 @@ function displayProductById(data) {
 // //choix de la quantité du produit//
 function quantityChoice() {
   let amount = document.querySelector("#quantity");
-    for (d = 1; d <= 5; d++) { 
+  for (d = 1; d <= 5; d++) { 
     let optionAmount = document.createElement("option");
     optionAmount.text = d;
     amount.appendChild(optionAmount);
     localStorage.setItem("quantity", "1")
     amount.addEventListener("click", function (event) {
-    //sessionStorage.removeItem("quantity")
-    let amountStorage = amount.value
-    event.preventDefault();
-    if (amount.value === null){ 
+      let amountStorage = amount.value
+      event.preventDefault();
+      if (amount.value === null){ 
       alert("veuilez choisir une quantité!")
-    }
-    
-    //sessionStorage.setItem("quantity", amountStorage);
-    localStorage.setItem("quantity", amountStorage);
+      }
+      localStorage.setItem("quantity", amountStorage);
     })
   }
 }
 
 /////Afficher produit selon l'id////
-function getSecondPromise(){  
-  let url = 'http://localhost:3000/api/furniture/' + idFurniture;
-  fetch(url).then((response) => response.json())
-  .then(function(data) { displayProductById (data);
-    displayVarnish(data); quantityChoice(); addToBasket(data)
+let furniture;
+const url = 'http://localhost:3000/api/furniture/' + idFurniture;
+function getProductById () {
+  fetch(url)
+  .then(response => {
+    if (response.ok) {  
+       return response.json().then(data => {
+         furniture = new Furniture(data["_id"], data["name"], data["price"], data["description"], data["imageUrl"], data["varnish"], data[length]);
+        console.log(furniture)
+      
+       });
+    }else{
+      return Promise.reject(response.status);
+    }
   })
+  .then(function(data) { displayProductById (furniture);
+    displayVarnish(furniture); quantityChoice(); addToBasket(furniture)
+    })
   .catch((err) => console.log('Erreur :' + err));
 }
-
-
-getSecondPromise()
+getProductById()
 
 
 

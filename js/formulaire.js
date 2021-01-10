@@ -14,12 +14,13 @@ let inputAdresseValid = /^(.|\n|\r|\n\r){3,}$/;
 let inputCityValid =/^[A-Z-a-z-\s]{3,40}$/;
 let cpValid =/^[0-9]{5}$/;
 let emailValid = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+let contact;
+let products;
 function validationlastName() { 
     let misslastName = document.querySelector("#misslastName");
     //si champs vide
     if (lastName.validity.valueMissing) { 
-        misslastName.textContent = "lastName manquant!";
+        misslastName.textContent = "Nom manquant!";
         misslastName.style.color = "red";
     //si saisie incorrect
     }else if (lastNameValid.test(lastName.value) == false) { 
@@ -33,7 +34,7 @@ function validationlastName() {
 function validationfirstName () {
     let missfirstName = document.querySelector("#missfirstName");
     if ( firstName.validity.valueMissing) { 
-        missfirstName.textContent = " firstName manquant!";
+        missfirstName.textContent = " Prénom manquant!";
         missfirstName.style.color = "red";
     }else if ( firstNameValid.test( firstName.value) == false) { 
         missfirstName.textContent = "Format incorrect";
@@ -109,24 +110,16 @@ function validationTel() {
     };
 }
 
-function validation() {
-    validationlastName()
-    validationfirstName()
-    validationAdresse()  
-    validationEmail()    
-    validationCity()
-    validationCp()
-    validationTel()
-     
+function checkBeforeSend () {
     if (lastNameValid.test(lastName.value) &&  firstNameValid.test( firstName.value) && inputAdresseValid.test(inputAdresse.value) && telValid.test(tel.value) && emailValid.test(email.value) && cpValid.test(cp.value) && inputCityValid.test(inputCity.value) === true) {
-        let contact = {
+        contact = {
         firstName:  firstName.value,
         lastName: lastName.value,
         address: inputAdresse.value,
         city: inputCity.value,
         email: email.value,
         }
-        let products = []
+        products = []
         for (i = 0; i < localStorage.length; i++) {
             let key = localStorage.getItem(localStorage.key((i)));
             let product = JSON.parse(key); 
@@ -134,33 +127,56 @@ function validation() {
             products.push((products_id));      
         }
         console.log(products);
-      
-        fetch('http://localhost:3000/api/furniture/order', {
-            method: "POST",
-            headers: {
-            'Content-Type':'application/json',
-            },
-            body: JSON.stringify({
-                contact,
-                products,   
-            }),  
-        })
-        . then(response => { 
-            if (response.ok){
-                return response.json();
-            }else{console.log('response pas ok!')}
-            
-        }).then(data =>
-            localStorage.setItem( "numero_commande",data.orderId),
-            alert(" Votre commande a bien été prise en compte"),
-            window.location = "confirmation.html" 
-            )
-        .catch((err) => console.log('Erreur :' + err));
-    }else{
+        return new Promise(getPromise)
+       
+    }else {
+        let elt = document.querySelector("#obligatoire")
+        elt.style.color = "red";
+        alert("Veullez  remplir les champs merci! ")
+    } 
     
-        alert("Veullez  remplir les champs correctement et accepter les conditions générale de la vente ")
-    }        
 }
+
+function getPromise() {
+    fetch('http://localhost:3000/api/furniture/order', {
+        method: "POST",
+        headers: {
+        'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            contact,
+            products,   
+        }),  
+    })
+    . then(response => { 
+        if (response.ok){
+            return response.json();
+        }else{console.log('response pas ok!')}
+        
+    }).then(data =>
+        localStorage.setItem( "numero_commande",data.orderId),
+        alert(" Votre commande a bien été prise en compte"),
+        window.location = "confirmation.html" 
+        )
+    .catch((err) => console.log('Erreur :' + err));    
+         
+} 
+      
+function validation(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    validationlastName()
+    validationfirstName()
+    validationAdresse()  
+    validationEmail()    
+    validationCity()
+    validationCp()
+    validationTel()  
+    checkBeforeSend()
+   
+} 
+
+
 
 
  

@@ -1,9 +1,9 @@
-class furniture{
-    constructor(_id, name, description, price, imageUrl, varnish) {
+class Furniture {
+    constructor(_id, name, price, description, imageUrl, varnish) {
         this._id = _id,
         this.name = name,
-        this.description = description,
         this.price = price,
+        this.description = description,
         this.imageUrl = imageUrl,
         this.varnish = varnish
     }
