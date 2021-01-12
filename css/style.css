@@ -46,7 +46,7 @@
   transition: transform 400ms;
 }
 .img-thumbnail:hover {
-  transform: scale(1.15);
+  transform: scale(1.03);
 }
 
 /*# sourceMappingURL=style.css.map */
