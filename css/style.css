@@ -1,5 +1,5 @@
 .navigation {
-  background: radial-gradient(#9356DC, #9356DC, #9356DC, #9356DC);
+  background-color: #9356DC;
 }
 
 .collection {
@@ -9,8 +9,8 @@
   background-color: #f5edff;
 }
 
-#shop:hover {
-  background-color: #f5edff;
+.shop {
+  border-radius: 10%;
 }
 
 .fa-check, .fa-truck, .fa-lock {
@@ -20,7 +20,7 @@
 .infos {
   font-size: 1.3rem;
   font-weight: bold;
-  color: gray;
+  color: black;
 }
 
 #section {
@@ -31,9 +31,22 @@
 .btn {
   color: #D68910;
   background: radial-gradient(#c97a58, #9356DC);
+  cursor: pointer;
 }
 .btn:hover {
   background: linear-gradient(#9356DC, #c97a58);
+}
+
+#clear {
+  display: none;
+}
+
+.img-thumbnail {
+  transform: scale(1);
+  transition: transform 400ms;
+}
+.img-thumbnail:hover {
+  transform: scale(1.15);
 }
 
 /*# sourceMappingURL=style.css.map */

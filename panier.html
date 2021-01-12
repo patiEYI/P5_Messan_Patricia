@@ -41,10 +41,10 @@
       <!--/////// main////////////// -->
       <main id="main" class="offset-lg-2">
          <h1 class="text-center shadow-lg p-4 font-weight-bold"> <em>Votre panier </em></h1>
-            <div class="container  mx-auto ">
+            <div class="container  mx-auto shop ">
                <div class="row">
                 <!---->
-                  <a class="list-group-item btn shadow-lg text-center my-2 text-white  border-info" id="shop"  href="index.html"><h3><em>continuer mes achats</em> </h3></a>
+                  <a id="shop"  href="index.html"><button class=" h3 btn shadow-lg text-center my-2 text-white  border-info"><em>continuer mes achats</em> </button></a>
                </div>
                <div class="container list-unstyled">
                   <div class="row bg-light mt-5" id="basket" >  </div> 
@@ -54,13 +54,12 @@
             </div>
             <div class="container">
                <div class="row">
-                  <p class="my-1 col offset-lg-2 h5"><span id="subtotal">Votre panier est vide.Besoin d'inspiration? Cliquez sur le boutton continuer mes achats pour retrouver toute notre collection! </span></p> 
+                  <p class="my-4 col h3"><span id="subtotal">Votre panier est vide.Besoin d'inspiration? Cliquez sur le boutton continuer mes achats pour retrouver toute notre collection! </span></p> 
                </div>
                <button id="clear" class="btn text-light shadow-lg p-2 my-4">vider le panier </button> 
             </div>
       </main>
       <section>
-      
          <form method="POST"  onsubmit="validation()" class=" my-5 mx-auto needs-validation" novalidate>
             <h5 class="offset-lg-4 offset-md-1 text-center">Ces champs sont requis pour valider votre commande
             <span id="obligatoire">*</span></h5>
@@ -123,7 +122,6 @@
                   </div>
                </div>
                   <button type="submit" id="submit" class="btn text-light shadow-lg mb-5 p-2 offset-sm-1 offset-lg-3 offset-md-1  " onclick="">Régler mes achats</button>
-            
          </form>
      </section>
   

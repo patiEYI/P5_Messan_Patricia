@@ -19,13 +19,14 @@ function displayProduct (allFurniture) {
     titreElt.classList.add("text-center", "col-xs-12", "h3");
     const priceElt = document.createElement('td');
     priceElt.className = "col-lg-3";  
+    priceElt.style.color = "#c97a58";
     priceElt.classList.add("text-center", "col-xs-12", "h4"); 
     const divDescription = document.createElement('td');
     divDescription.className = "col"; 
     divDescription.classList.add("w-25", "text-justify", "align-middle", "col-xs-12", "h5")   
     const lienProduct = document.createElement("a"); 
-    lienProduct.style.textDecoration = "none"; 
-    lienProduct.style.color = "gray";
+    lienProduct.style.textDecoration = "none";
+    lienProduct.style.color = "black";
     let idLien = allFurniture[i]["_id"];      
     lienProduct.href = "produit.html?id=" + idLien;      
     elt.appendChild(lienProduct).appendChild(divTr).appendChild(divImage).appendChild(myImg); 

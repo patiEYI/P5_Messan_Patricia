@@ -1,10 +1,10 @@
 //Sauvegarde des nouveaux produits
+localStorage.removeItem("quantity" )  
 function add(){
   if (localStorage.getItem("newProduct")) {
     let session = localStorage.getItem("newProduct");
     localStorage.setItem("item" + localStorage.length++, session);
     localStorage.removeItem("newProduct")
-    localStorage.removeItem("quantity" )  
     localStorage.removeItem("varnish" );
     localStorage.removeItem("numero_commande" );
   }
@@ -26,13 +26,13 @@ function displayBasket() {
       let eltBasket = document.querySelector("#basket");
       eltBasket.appendChild(elt);
       eltBasket.appendChild(newElt);
-      let imgElt = document.createElement('div'); 
-      imgElt.className = "card-img-top";   
+      let imgElt = document.createElement('div');   
       imgElt.classList.add("img-fluid", "border-info"); 
       let myImg = new Image();  
       myImg.addEventListener('load', function () { });
       myImg.style.width = "200px"; 
       myImg.style.height = "200px"; 
+      myImg.className = "img-thumbnail"; 
       myImg.src = product["imageUrl"]; 
       elt.appendChild(imgElt).appendChild(myImg);
       let varnishElt = document.createElement('h5');
@@ -40,8 +40,9 @@ function displayBasket() {
       let titreElt = document.createElement('h4');
       titreElt.className = "m-1";   
       titreElt.classList.add("pt-1", "col-xs-12");
-      let priceElt = document.createElement('h4');
+      let priceElt = document.createElement('h5');
       priceElt.className = "m-1";  
+      priceElt.style.color = "#c97a58";
       priceElt.classList.add("pt-1", "col-xs-12");
       let quantityElt = document.createElement('h5');
       quantityElt.className = "m-1";

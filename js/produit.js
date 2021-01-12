@@ -1,8 +1,8 @@
 let idUrl = window.location.search;
 let idFurniture = idUrl.substr(4);console.log(idFurniture)
 let newProduct = []
-sessionStorage.removeItem("varnish");
-sessionStorage.removeItem("quantity");
+localStorage.removeItem("varnish");
+localStorage.removeItem("quantity");
 
 //affichage produit
 function displayProductById(furniture) { 
@@ -11,10 +11,11 @@ function displayProductById(furniture) {
   divCard.style.backgroundColor = "#c4accd";
   let divCardTitre = document.querySelector('.card-title');
   let cardPrice = document.querySelector('.card-price');
+  cardPrice.style.color = "#c97a58";
   let divCardDescription = document.querySelector('.card-text');
   let myImg = new Image();              
   myImg.addEventListener('load', function () { });
-  divCardImage.className = "card-img-top";
+  divCardImage.classList.add("img-thumbnail");
   divCard.appendChild(divCardImage).src = furniture["imageUrl"];
   divCardTitre.innerHTML = furniture["name"];
   cardPrice.innerHTML = "Prix : " + furniture["price"] / 100 + " euros";
@@ -81,11 +82,8 @@ function quantityChoice() {
     localStorage.setItem("quantity", "1")
     amount.addEventListener("click", function (event) {
       let amountStorage = amount.value
-      event.preventDefault();
-      if (amount.value === null){ 
-      alert("veuilez choisir une quantité!")
-      }
       localStorage.setItem("quantity", amountStorage);
+      event.preventDefault();
     })
   }
 }
