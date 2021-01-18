@@ -60,11 +60,19 @@ function displayBasket() {
         localStorage.clear(product);
         sessionStorage.clear();
         window.location = "panier.html";
-        deleteButton.style.display = "none"; 
+        deleteButton.style.display = "block"; 
       })  
      
     }
   
+  }
+}
+
+//Affiche le formuaire
+function formulaireVisible(){
+  if (localStorage.length > 0) {
+    let form = document.querySelector(".needs-validation");
+    form.style.display = "block"; 
   }
 }
 
@@ -91,10 +99,12 @@ function calculeBasket() {
 //vérication des données du formulaire
 function checkForm() {
   let eltSubmit = document.querySelector("#submit");
-  eltSubmit.addEventListener('click', validation)  
+    eltSubmit.addEventListener('click', validation)
+    
 }
 
 function send () {
+  formulaireVisible()
   add()
   displayBasket()
   calculeBasket()

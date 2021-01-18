@@ -8,19 +8,20 @@
     }
 }
 .shop{
-    border-radius: 10%;
-}
+    border-radius: 10%;}
 .fa-check,.fa-truck,.fa-lock{
     color: #9356DC ; 
 }
 .infos{
     font-size: 1.3rem;
     font-weight: bold;
-    color: black;}
+    color: black;
+}
 
 #section{
     background-color: #f6f6f6;
-    border: solid 1px gray;  
+    border: solid 1px gray; 
+     
 }
 .btn{
     color:#D68910 ;
@@ -41,5 +42,7 @@
         transform: scale(1.03);  
     }
 }
-
+.needs-validation{
+    display: none;}
+// e7bff2d2b6354ae8196370edb17d0f4f7d92fd94
 

@@ -16,6 +16,7 @@ let cpValid =/^[0-9]{5}$/;
 let emailValid = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 let contact;
 let products;
+
 function validationlastName() { 
     let misslastName = document.querySelector("#misslastName");
     //si champs vide
@@ -98,7 +99,6 @@ function validationCp() {
 
 function validationTel() {
     let missTel = document.querySelector("#missTel");
-   
     if (tel.validity.valueMissing) { 
         missTel.textContent = "Numéro de téléphone manquant!";
         missTel.style.color = "red";
@@ -106,35 +106,46 @@ function validationTel() {
         missTel.textContent = "Format incorrect";
         missTel.style.color = "orange";
     }else{
-        missTel.textContent = "";
+         missTel.textContent = "";
     };
 }
 
 function checkBeforeSend () {
-    if (lastNameValid.test(lastName.value) &&  firstNameValid.test( firstName.value) && inputAdresseValid.test(inputAdresse.value) && telValid.test(tel.value) && emailValid.test(email.value) && cpValid.test(cp.value) && inputCityValid.test(inputCity.value) === true) {
-        contact = {
-        firstName:  firstName.value,
+        return new Promise((createContact, getProductId) => { 
+        if (lastNameValid.test(lastName.value) && firstNameValid.test(firstName.value) && inputAdresseValid.test(inputAdresse.value) && telValid.test(tel.value) && emailValid.test(email.value) && cpValid.test(cp.value) && inputCityValid.test(inputCity.value) ===true) { 
+            createContact();
+            getProductId();
+        
+        }else {
+            let elt = document.querySelector("#obligatoire")
+            elt.style.color = "red";
+            alert("Veullez remplir tous les champs merci! ")
+        }
+    }) 
+    
+}
+
+function createContact() {
+    contact = {
+        firstName: firstName.value,
         lastName: lastName.value,
         address: inputAdresse.value,
         city: inputCity.value,
         email: email.value,
-        }
-        products = []
-        for (i = 0; i < localStorage.length; i++) {
-            let key = localStorage.getItem(localStorage.key((i)));
-            let product = JSON.parse(key); 
-            let products_id = product["id"];
-            products.push((products_id));      
-        }
-        console.log(products);
-        return new Promise(getPromise)
-       
-    }else {
-        let elt = document.querySelector("#obligatoire")
-        elt.style.color = "red";
-        alert("Veullez  remplir les champs merci! ")
-    } 
+    }
+    console.log(contact);
+}
+
+function getProductId() {
+    products = []
+    for (i = 0; i < localStorage.length; i++) {
+        let key = localStorage.getItem(localStorage.key((i)));
+        let product = JSON.parse(key);
+        let products_id = product["id"];
+        products.push((products_id));
+    }
     
+    console.log(products);
 }
 
 function getPromise() {
@@ -161,7 +172,6 @@ function getPromise() {
     .catch((err) => console.log('Erreur :' + err));    
          
 } 
-      
 function validation(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -171,10 +181,12 @@ function validation(event) {
     validationEmail()    
     validationCity()
     validationCp()
-    validationTel()  
-    checkBeforeSend()
-   
+    validationTel() 
+    const promise = checkBeforeSend();
+    promise.then(getProductId).then(createContact).then(getPromise)
+    .catch((err) => console.log('Erreur :' + err));   
 } 
+
 
 
 

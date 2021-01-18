@@ -3,7 +3,7 @@ function order () {
     let elt = document.querySelector("#thanks");
     let eltNew = document.createElement("h6"); eltNew.className = ("py-2");
     let eltbutton = document.querySelector("#confirmation");
-    elt.appendChild(eltNew).innerHTML = " Orino  vous remercie pour vous commande n°" + localStorage.getItem("numero_commande")   + ". Le prix total de votre commande est: " + sessionStorage.getItem("totalPrice") + " euros. Tous les informations de votre commande vous serront transmis par mail."
+    elt.appendChild(eltNew).innerHTML = " Orinoco  vous remercie pour votre commande n°" + localStorage.getItem("numero_commande")   + ". Le prix total de celle-ci est de  " + sessionStorage.getItem("totalPrice") + " euros. Toutes les informations de votre commande vous serront transmis par email."
     eltbutton.innerHTML = "continuer mes achats";  
     eltbutton.addEventListener("click", function(event){
         localStorage.clear()

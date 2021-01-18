@@ -4,7 +4,7 @@ let newProduct = []
 localStorage.removeItem("varnish");
 localStorage.removeItem("quantity");
 
-//affichage produit
+//affiche le produit//
 function displayProductById(furniture) { 
   let divCardImage = document.createElement("img");
   let divCard = document.querySelector('.card');

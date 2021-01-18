@@ -1,4 +1,4 @@
-
+//affiche tous les furnitures//
 function displayProduct (allFurniture) { 
   for(let i = 0; i < allFurniture.length; i++) {
     const divTr =  document.createElement('tr'); 
