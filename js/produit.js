@@ -26,10 +26,9 @@ function displayProductById(furniture) {
 //choix du vernis//
   function displayVarnish(furniture) {  
     let divVarnish= document.querySelector('#selection'); 
-      for (d = -1; d < furniture["varnish"].length; d++) {
+      for (d = 1; d < furniture["varnish"].length; d++) {
         if (d < 0) { 
           let option = document.createElement("option");
-          option.text = "vernis disponible";
           divVarnish.appendChild(option);
         }else{ 
           let option = document.createElement("option");
