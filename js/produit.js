@@ -22,9 +22,6 @@ function displayProductById(furniture) {
   divCardDescription.innerHTML = "Description :" + furniture["description"];
 
 }
-if (localStorage.getItem("varnish")=="vernis disponible"){
-  alert('non')
-}
 
 //choix du vernis//
   function displayVarnish(furniture) {  
