@@ -183,7 +183,7 @@ function validation(event) {
     validationCp()
     validationTel() 
     const promise = checkBeforeSend();
-    promise.then(getProductId).then(createContact).then(getPromise)
+    promise.then(getProductId).then(createContact).then( getProductId).then(getPromise)
     .catch((err) => console.log('Erreur :' + err));   
 } 
 
