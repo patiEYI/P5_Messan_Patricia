@@ -22,27 +22,32 @@ function displayProductById(furniture) {
   divCardDescription.innerHTML = "Description :" + furniture["description"];
 
 }
+if (localStorage.getItem("varnish")=="vernis disponible"){
+  alert('non')
+}
 
 //choix du vernis//
   function displayVarnish(furniture) {  
     let divVarnish= document.querySelector('#selection'); 
-      for (d = 1; d < furniture["varnish"].length; d++) {
-        if (d < 0) { 
-          let option = document.createElement("option");
-          divVarnish.appendChild(option);
-        }else{ 
-          let option = document.createElement("option");
-          option.text = furniture["varnish"][d];
-          option.setAttribute("value", option.text);
-          divVarnish.add(option);
-          divVarnish.addEventListener("click", function(event){
+    for (d = -1; d < furniture["varnish"].length; d++) {
+      if (d < 0) { 
+        let option = document.createElement("option");
+        option.text = "vernis disponible";
+        divVarnish.appendChild(option);
+      }else{ 
+        let option = document.createElement("option");
+        option.text = furniture["varnish"][d];
+        option.setAttribute("value", option.text);
+        divVarnish.add(option);
+        divVarnish.addEventListener("click", function(event){
           localStorage.removeItem("varnish")
-        if (divVarnish.value !="choisir") {
-          let varnishStorage = divVarnish.value;
-          localStorage.setItem("varnish", varnishStorage);
-         
+          if (divVarnish.value != "vernis disponible") {
+            event.preventDefault();
+            let varnishStorage = divVarnish.value;
+            localStorage.setItem("varnish", varnishStorage); 
           }
         })
+       
       }
     };
   }
