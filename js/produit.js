@@ -1,5 +1,5 @@
 let idUrl = window.location.search;
-let idFurniture = idUrl.substr(4);console.log(idFurniture)
+let idFurniture = idUrl.substr(4);
 let newProduct = []
 localStorage.removeItem("varnish");
 localStorage.removeItem("quantity");
