@@ -88,7 +88,7 @@ function calculeBasket() {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       console.log(totalPrice.reduce(reducer));
       console.log(totalPrice)
-      subtotal.innerHTML = "Sous total : " + totalPrice.reduce(reducer) + "€";
+      subtotal.innerHTML = "Total : " + totalPrice.reduce(reducer) + "€";
       sessionStorage.setItem("totalPrice", JSON.stringify(totalPrice.reduce(reducer)));
   
     }
